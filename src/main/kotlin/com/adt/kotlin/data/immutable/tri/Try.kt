@@ -86,7 +86,7 @@ sealed class Try<A> {
      * @param om    		        following Try monadic context
      * @return      		        Try context
      */
-    fun <B> andThen(om: Try<B>): Try<B> = this.bind{a: A -> om}
+    fun <B> andThen(om: Try<B>): Try<B> = this.bind{_: A -> om}
 
 
 // ---------- properties ----------------------------------

@@ -1098,14 +1098,14 @@ object JListF {
      *   of lists of elements which do and do not satisfy the predicate.
      *
      * @param xs                    existing list
-     * @param predicate             criteria
+     * @param pred                  criteria
      * @return                      pair of new lists
      */
-    fun <A> partition(xs: List<A>, predicate: (A) -> Boolean): Pair<List<A>, List<A>> {
-        val select: ((A) -> Boolean) -> (A) -> (Pair<List<A>, List<A>>) -> Pair<List<A>, List<A>> = {predicate ->
+    fun <A> partition(xs: List<A>, pred: (A) -> Boolean): Pair<List<A>, List<A>> {
+        val select: ((A) -> Boolean) -> (A) -> (Pair<List<A>, List<A>>) -> Pair<List<A>, List<A>> = {p ->
             {x ->
                 {pair ->
-                    if (predicate(x)) {
+                    if (p(x)) {
                         val cons: List<A> = cons(x, pair.first)
                         Pair(cons, pair.second)
                     } else {
@@ -1115,7 +1115,7 @@ object JListF {
                 }
             }
         }
-        return foldRight(xs, Pair(listOf<A>(), listOf<A>()), select(predicate))
+        return foldRight(xs, Pair(listOf<A>(), listOf<A>()), select(pred))
     }
 
     fun <A> partition(predicate: (A) -> Boolean): (List<A>) -> Pair<List<A>, List<A>> = {xs -> partition(xs, predicate)}
@@ -1261,7 +1261,7 @@ object JListF {
      * @param vs    		        existing list
      * @return      		        wrapped result of function application
      */
-    fun <A, B> andThen(xs: List<A>, vs: List<B>): List<B> = bind(xs){x -> vs}
+    fun <A, B> andThen(xs: List<A>, vs: List<B>): List<B> = bind(xs){_ -> vs}
 
 
 

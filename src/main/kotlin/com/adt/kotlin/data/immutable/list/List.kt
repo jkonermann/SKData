@@ -1184,9 +1184,9 @@ sealed class List<out A> : Iterable<A> {
             return when(opt) {
                 is Option.None -> Cons(Pair(k, 1), bs)
                 is Option.Some<Pair<K, Int>> -> {
-                    val pr: Pair<K, Int> = opt.get()
+                    val pair: Pair<K, Int> = opt.get()
                     val bss: List<Pair<K, Int>> = bs.filter{pr: Pair<K, Int> -> (k != pr.first)}
-                    Cons(Pair(k, 1 + pr.second), bss)
+                    Cons(Pair(k, 1 + pair.second), bss)
                 }
             }
         }   // count

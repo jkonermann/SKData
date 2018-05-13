@@ -556,7 +556,7 @@ object MapF {
 
     internal fun <K : Comparable<K>, V> splitMember(key: K, value: V, map: Map<K, V>): Triple<Map<K, V>, Boolean, Map<K, V>> {
         val split: Triple<Map<K, V>, Option<Pair<K, V>>, Map<K, V>> = splitLookup(key, value, map)
-        return Triple(split.first, split.second.fold(false){pr: Pair<K, V> -> true}, split.third)
+        return Triple(split.first, split.second.fold(false){_: Pair<K, V> -> true}, split.third)
     }
 
 }

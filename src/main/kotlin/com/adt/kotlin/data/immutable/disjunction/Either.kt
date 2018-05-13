@@ -76,14 +76,12 @@ sealed class Either<out A, out B> {
                     when(either) {
                         is Left -> (this.value == either.value)
                         is Right -> false
-                        else -> throw EitherException("Either.equals: unexpected Either")
                     }
                 }
                 is Right -> {
                     when(either) {
                         is Left -> false
                         is Right -> (this.value == either.value)
-                        else -> throw EitherException("Either.equals: unexpected Either")
                     }
                 }
             }

@@ -296,11 +296,11 @@ object ListF {
      *   fromArray((1, 2, 3)) = [1, 2, 3]
      *   fromArray(()) = []
      *
-     * @param xs                    array
+     * @param l                     array
      * @return                      immutable list of the given values
      */
-    fun <A> fromArray(xs: Array<A>): List<A> =
-            xs.foldRight(nil) {x: A, xs: List<A> -> cons(x, xs)}
+    fun <A> fromArray(l: Array<A>): List<A> =
+            l.foldRight(nil) {x: A, xs: List<A> -> cons(x, xs)}
 
     /**
      * Convert an array list into an immutable list.
@@ -309,11 +309,11 @@ object ListF {
      *   fromList([1, 2, 3]) = [1, 2, 3]
      *   fromList([]) = []
      *
-     * @param xs                    list
+     * @param l                     list
      * @return                      immutable list of the given values
      */
-    fun <A> fromList(xs: KList<A>): List<A> =
-            xs.foldRight(nil as List<A>){x, xs -> cons(x, xs)}
+    fun <A> fromList(l: KList<A>): List<A> =
+            l.foldRight(nil as List<A>){x, xs -> cons(x, xs)}
 
     /**
      * Convert an immutable list to an array.
